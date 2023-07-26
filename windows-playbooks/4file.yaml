@@ -1,0 +1,25 @@
+
+---
+- name: create a file
+  hosts: win
+  gather_facts: no
+  become: no
+  tasks:
+    - name: touch a a new file
+      ansible.windows.win_file:
+        path: C:\Users\Administrator\data\hulk.txt
+        state: touch 
+     
+    - name: remove existing file
+      ansible.windows.win_file:
+        path: C:\Users\Administrator\data\avengers.txt
+        state: absent
+
+
+    - name: Run PowerShell command
+      ansible.windows.win_shell: Get-ChildItem -Path C:\Users\Administrator\data
+      register: command_output
+
+    - name: Print command output
+      ansible.builtin.debug:
+        msg: "{{ command_output.stdout_lines }}"

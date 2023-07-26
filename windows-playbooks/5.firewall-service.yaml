@@ -1,0 +1,13 @@
+---
+- name: Manage Windows Firewall rules
+  hosts: win
+  gather_facts: no
+  tasks:
+    - name: Enable firewall for Domain, Public and Private profiles
+      community.windows.win_firewall:
+        state: enabled
+        profiles:
+        - Domain
+        - Private
+        - Public
+      tags: enable_firewall

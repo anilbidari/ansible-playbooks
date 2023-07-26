@@ -1,0 +1,12 @@
+---
+- name: excute win shell commands
+  hosts: win
+  gather_facts: no
+  tasks:
+    - name: Run PowerShell command
+      ansible.windows.win_shell: Get-ChildItem -Path C:\Users\Administrator\data
+      register: command_output
+
+    - name: Print command output
+      ansible.builtin.debug:
+        msg: "{{ command_output.stdout_lines }}"

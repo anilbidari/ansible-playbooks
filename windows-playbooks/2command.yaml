@@ -1,0 +1,26 @@
+
+---
+- name: File ops
+  hosts: win
+  gather_facts: no
+  become: no
+  tasks:
+    - name: create a new file name anil.txt
+      ansible.windows.win_command: powershell.exe
+      args:
+        stdin: New-Item -ItemType File -Path C:\Users\Administrator\data\anil.txt -Force
+    
+    - name: create a new file name ajay.txt
+      ansible.windows.win_command: powershell.exe
+      args:
+        stdin: New-Item -ItemType File -Path C:\Users\Administrator\data\ajay.txt -Force
+
+
+    - name: Run PowerShell command
+      ansible.windows.win_shell: Get-ChildItem -Path C:\Users\Administrator\data
+      register: command_output
+
+    - name: Print command output
+      ansible.builtin.debug:
+        msg: "{{ command_output.stdout_lines }}"
+

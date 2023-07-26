@@ -1,0 +1,13 @@
+---
+- name: excute win shell commands
+  hosts: win
+  gather_facts: no
+  tasks:
+    - name: Ensure user Alex is present
+      ansible.windows.win_user:
+        name: alex
+        password: Ferrari@4488
+        state: present
+        groups:
+          - Users
+

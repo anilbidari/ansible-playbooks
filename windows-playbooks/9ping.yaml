@@ -1,0 +1,7 @@
+---
+- name: excute win shell commands
+  hosts: win
+  gather_facts: no
+  tasks:
+    - name: Example from an Ansible Playbook
+      win_ping: 

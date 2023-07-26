@@ -1,0 +1,11 @@
+
+---
+- name: install web-server
+  hosts: win
+  gather_facts: no
+  become: no
+  tasks:
+    - name: Ensure Web-Server feature is installed
+      ansible.windows.win_feature:
+        name: Web-Server
+        state: present

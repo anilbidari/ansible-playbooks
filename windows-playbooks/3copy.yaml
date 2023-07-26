@@ -1,0 +1,19 @@
+
+---
+- name: copy a file
+  hosts: win
+  gather_facts: no
+  become: no
+  tasks:
+    - name: Copy the file
+      ansible.windows.win_copy:
+        src: /home/ubuntu/playbooks/avengers.txt
+        dest: C:\Users\Administrator\data
+
+    - name: Run PowerShell command
+      ansible.windows.win_shell: Get-ChildItem -Path C:\Users\Administrator\data
+      register: command_output
+
+    - name: Print command output
+      ansible.builtin.debug:
+        msg: "{{ command_output.stdout_lines }}"

@@ -1,0 +1,16 @@
+---
+- name: Install packages on Windows with Chocolatey
+  hosts: win
+  gather_facts: yes
+  tasks:
+   - name: Install packages
+     win_chocolatey:
+      name: "{{ item }}"
+      state: present
+     loop:
+     - notepadplusplus
+     - jdk8
+     - docker-desktop
+     - googlechrome
+     - firefox
+
