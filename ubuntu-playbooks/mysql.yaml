@@ -1,0 +1,26 @@
+---
+- hosts: ubuntu
+  become: true
+  tasks:
+
+
+   - name: Run the equivalent of "apt-get update" as a separate step
+     ansible.builtin.apt:
+       update_cache: yes
+
+
+   - name: Install Mysql  (state=present is optional)
+     ansible.builtin.apt:
+       name: mysql-server
+       state: present
+
+
+   - name: Start service mysqld if not started
+     ansible.builtin.service:
+       name: mysql
+       state: started
+
+
+    
+
+
